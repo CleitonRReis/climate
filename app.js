@@ -67,7 +67,7 @@ formCity.addEventListener('submit', async event => {
         if (!response.ok) {
             invalidCityFeedback.style.display = 'block';
             return;
-        }
+        };
         
         invalidCityFeedback.style.display = 'none';
 
@@ -83,7 +83,7 @@ formCity.addEventListener('submit', async event => {
             clouds: cityData.clouds.all,
             windSpeed: cityData.wind.speed,
             icon: cityData.weather[0].icon,
-        }
+        };
 
         showInfo(infoDataCity);
         isNightInCity(cityData.weather[0].icon);
