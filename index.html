@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/icon.PNG">
+    <link rel="stylesheet" href="style.css">
+    <title>CLIMATE</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="container-1">
+            <div class="per-humidity">
+                <i class="fas fa-tint"></i>
+                <h3 class="humidity">Umidade: 0%</h3>
+            </div>
+            
+            <div class="per-winds">
+                <i class="fas fa-wind"></i>
+                <h3 class="wind">Vento: 0 ms/s</h3>
+            </div>
+            
+            <div class="per-clouds">
+                <i class="fas fa-cloud"></i>
+                <h3 class="clouds">Nuvens: 0%</h3>
+            </div>
+        </div>
+        
+        <div class="container-2">
+            <form class="form-city">
+                <div class="container-input">
+                    <input style="animation-delay: 700ms;" type="text" class="input-city" name="city" placeholder="Informe uma cidade...">
+                    <div class="search"><i class="fas fa-search" style="animation-delay: 700ms;"></i></div>
+                </div>
+                <div class="invalid-city">Cidade inválida</div>
+            </form>
+
+            <div class="container-data">
+                <div class="city">
+                    <h2 class="name-city">São Paulo, BR</h2>
+                </div>
+
+                <div class="temperature">
+                    <img src="http://openweathermap.org/img/wn/01d@2x.png" class="icon-png" alt="">
+                    <h1>15 ˚C</h1>
+                </div>
+
+                <div class="description">
+                    <h3 class="description-name">Céu limpo</h3>
+                </div>
+            </div>
+
+            <div class="data" style="animation-delay: 700ms;">
+                <h3 class="thermal-sensation">Sensação Térmica: <span>0 <sup>º</sup>C</span></h3>
+                <h3 class="minimum">Temp. Mínima: <span>0 <sup>º</sup>C</span></h3>
+                <h3 class="maximum">Temp. Máxima: <span>0 <sup>º</sup>C</span></h3>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
