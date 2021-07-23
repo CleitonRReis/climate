@@ -71,7 +71,7 @@ formCity.addEventListener('submit', async event => {
         
         invalidCityFeedback.style.display = 'none';
 
-        showInfo({
+        const infoDataCity = {
             nameOfCity: cityData.name,
             country: cityData.sys.country,
             temp: cityData.main.temp,
@@ -83,8 +83,9 @@ formCity.addEventListener('submit', async event => {
             clouds: cityData.clouds.all,
             windSpeed: cityData.wind.speed,
             icon: cityData.weather[0].icon,
-        });
-        
+        }
+
+        showInfo(infoDataCity);
         isNightInCity(cityData.weather[0].icon);
 
         formCity.city.value = '';
