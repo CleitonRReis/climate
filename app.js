@@ -1,5 +1,6 @@
 const formCity = document.querySelector('.form-city');
 const nameOfCity = document.querySelector('.name-city');
+const flagIcon = document.querySelector('.flag-icon');
 const descriptionOfClimate = document.querySelector('.description-name');
 const temperatureOfCity = document.querySelector('.temperature h1');
 const thermalSensation = document.querySelector('.thermal-sensation');
@@ -15,9 +16,9 @@ const invalidCityFeedback = document.querySelector('.invalid-city');
 const capitalizedStr = str => str.charAt(0).toUpperCase() + str.substr(1);
 
 const testCity = event => {
-    const invalidCity = event.target.value;
+    const city = event.target.value;
     const regex = /[a-zA-Zà-úÀ-Ú]{3,}/;
-    const isAValidCity = regex.test(invalidCity);
+    const isAValidCity = regex.test(city);
 
     if (!isAValidCity) {
         inputCity.style.color = 'red';
@@ -27,69 +28,82 @@ const testCity = event => {
     inputCity.style.color = 'white';
 };
 
-formCity.addEventListener('input', testCity);
-
-const isNightInCity = (codeIcon) => {
-    let body = document.querySelector('.main');
-
+const isNightInCity = codeIcon => {
+    const main = document.querySelector('.main');
     const imgDay = "url(img/day.jpeg)";
     const imgNight = "url(img/night.jpeg)";
 
-    codeIcon.includes('n') ? body.style.backgroundImage = imgNight : body.style.backgroundImage = imgDay;
+    main.style.backgroundImage = codeIcon.includes('n') ? imgNight : imgDay;
 };
 
-const showInfo = cityData => {
-    nameOfCity.innerHTML = `${cityData.nameOfCity}, ${cityData.country}`;
-    temperatureOfCity.innerHTML = `${Math.round(cityData.temp)} ˚C`;
-    domIcon.src = `http://openweathermap.org/img/wn/${cityData.icon}@2x.png`;
-    airHumidity.innerHTML = `Umidade: ${cityData.humidity}%`;
-    domClouds.innerHTML = `Nuvens: ${cityData.clouds}%`;
-    domWind.innerHTML = `Vento: ${cityData.windSpeed} m/s`;
-    descriptionOfClimate.innerHTML = capitalizedStr(cityData.description);
-    thermalSensation.innerHTML = `Sensação Térmica: ${Math.round(cityData.thermalSensation)} ˚C`;
-    temperatureMinimum.innerHTML = `Temp. Mínima: ${Math.round(cityData.maxTemp)} ˚C`;
-    temperatureMaximum.innerHTML = `Tem. Máxima: ${Math.round(cityData.minTemp)} ˚C`;
+const showWeatherInfo = city => {
+    nameOfCity.innerHTML = `${city.name}, ${city.country}`;
+    temperatureOfCity.innerHTML = `${Math.round(city.temp)} ˚C`;
+    domIcon.src = `http://openweathermap.org/img/wn/${city.icon}@2x.png`;
+    airHumidity.innerHTML = `Umidade: ${city.humidity}%`;
+    domClouds.innerHTML = `Nuvens: ${city.clouds}%`;
+    domWind.innerHTML = `Vento: ${city.windSpeed} m/s`;
+    descriptionOfClimate.innerHTML = capitalizedStr(city.description);
+    thermalSensation.innerHTML = `Sensação Térmica: ${Math.round(city.thermalSensation)} ˚C`;
+    temperatureMinimum.innerHTML = `Temp. Mínima: ${Math.round(city.maxTemp)} ˚C`;
+    temperatureMaximum.innerHTML = `Temp. Máxima: ${Math.round(city.minTemp)} ˚C`;
+    
+    flagIcon.setAttribute('class', `flag-icon flag-icon-${city.country.toLowerCase()}`);
 };
 
 const TOKEN_API = 'f9410f78bb373f2d1cf7c2a74a3d4b6f';
 
 const API_URL = cityName =>
-    `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=pt_br&APPID=${TOKEN_API}`;
+`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=pt_br&APPID=${TOKEN_API}`;
 
 formCity.addEventListener('submit', async event => {
     event.preventDefault();
-
+    
     try {
         const inputValue = formCity.city.value;
         const response = await fetch(API_URL(inputValue));
-        const cityData = await response.json();
-
+        const city = await response.json();
+        
         if (!response.ok) {
-            invalidCityFeedback.style.display = 'block';
-            return;
+            invalidCityFeedback.style.display = 'flex';
+            return; 
         };
         
         invalidCityFeedback.style.display = 'none';
-
+        
         const infoDataCity = {
-            nameOfCity: cityData.name,
-            country: cityData.sys.country,
-            temp: cityData.main.temp,
-            description: cityData.weather[0].description,
-            thermalSensation: cityData.main.feels_like,
-            maxTemp: cityData.main.temp_max,
-            minTemp: cityData.main.temp_min,
-            humidity: cityData.main.humidity,
-            clouds: cityData.clouds.all,
-            windSpeed: cityData.wind.speed,
-            icon: cityData.weather[0].icon,
+            name: city.name,
+            country: city.sys.country,
+            temp: city.main.temp,
+            description: city.weather[0].description,
+            thermalSensation: city.main.feels_like,
+            maxTemp: city.main.temp_max,
+            minTemp: city.main.temp_min,
+            humidity: city.main.humidity,
+            clouds: city.clouds.all,
+            windSpeed: city.wind.speed,
+            icon: city.weather[0].icon,
         };
 
-        showInfo(infoDataCity);
-        isNightInCity(cityData.weather[0].icon);
+        localStorage.setItem('infoDataCityInLocalStorage', JSON.stringify(infoDataCity));
 
-        formCity.city.value = '';
+        showWeatherInfo(infoDataCity);
+        isNightInCity(city.weather[0].icon);
+
+    formCity.city.value = '';
     } catch (err) {
         console.log(err);
     };
 });
+
+const getDataInLocalStorage = () => {
+    const infoDataCity = JSON.parse(localStorage.getItem('infoDataCityInLocalStorage'));
+    
+    if (infoDataCity) {
+        showWeatherInfo(infoDataCity);
+        isNightInCity(infoDataCity.icon);
+    };
+};
+
+getDataInLocalStorage();
+formCity.addEventListener('input', testCity);
