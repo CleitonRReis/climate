@@ -57,7 +57,7 @@
     width: 200px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: rgb(94, 30, 30);
     box-shadow:  0px 0px 3px #501a1a,
                  0px 0px 3px #6c2323;
@@ -120,7 +120,25 @@
 }
 
 .name-city, .description-name {
-    font-size: 25px;
+    font-size: 20px;
+}
+
+.per-humidity,
+.per-winds,
+.per-clouds,
+.thermal-sensation,
+.minimum,
+.maximum {
+    transition: .5s ease;
+}
+
+.per-humidity:hover,
+.per-winds:hover,
+.per-clouds:hover,
+.thermal-sensation:hover,
+.minimum:hover,
+.maximum:hover {
+    color: white;
 }
 
 input {
@@ -227,7 +245,7 @@ input:focus {
     height: 350px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: column;
     font-weight: 700;
     padding: 20px;
@@ -251,14 +269,19 @@ input:focus {
 
 .city {
     display: flex;
-    width: 310px;
     padding: 5px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     position: relative;
     transform: translateY(-30px);
     opacity: 0;
+    font-size: 1px;
     animation: has-show 1s ease-in-out 1s forwards;
+}
+
+.flag-icon {
+    width: 30px;
+    height: 30px;
 }
 
 .icon-png {
@@ -270,5 +293,125 @@ input:focus {
     to {
         opacity: 1;
         transform: none;
+    }
+}
+
+/*  Tablet */
+
+@media (min-width: 450px) and (max-width: 960px) {
+    .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container-1 {
+        width: 80vw;
+        height: 10vh;
+        margin: auto;
+        flex-direction: row;
+        transform: translateY(-60px);
+    }
+
+    .container-2 {
+        width: 90vw;
+        height: calc(100vh - 300px);
+        margin: auto;
+        margin-top: -40px;
+        padding: 20px;
+        transform: translateY(60px);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .name-city, .description-name {
+        font-size: 20px;
+    }
+
+    .temperature h1 {
+        font-size: 35px;
+    }
+
+    .container-data {
+        width: 280px;
+        height: 280px;
+        margin-bottom: 15px;
+    }
+
+    .data {
+        width: calc(100vw - 190px);
+        height: 5vh;
+        margin-bottom: 10px;
+    }
+
+    .fa-tint,
+    .fa-wind,
+    .fa-cloud {
+        font-size: 20px;
+    }
+
+    .per-humidity,
+    .per-winds,
+    .per-clouds {
+        height: auto;
+        border-radius: 5px;
+        font-size: 15px;
+        justify-content: space-around;
+    }
+    .per-humidity {
+        transform: translateX(-50px);
+    }
+
+    .per-winds {
+        transform: translateY(-50px);
+    }
+    
+    .per-clouds {
+        transform: translateX(50px);
+    }
+}
+
+/*  Mobile */
+
+@media (max-width: 450px) {
+    .main {
+        align-items: center;
+    }
+
+    .container-1, .data {
+        display: none;
+    }
+
+    .container-2 {
+        width: 90vw;
+        height: calc(100vh - 200px);
+        justify-content: space-between;
+        margin: auto;
+        padding: 20px;
+        transform: translateY(60px);
+        align-items: center;
+        justify-content: center;
+    }
+
+    input {
+        width: 300px;
+    }
+
+    .name-city, .description-name {
+        font-size: 20px;
+    }
+
+    .temperature h1 {
+        font-size: 35px;
+    }
+
+    .fa-search {
+        padding: 8px;
+        margin-left: 100px;
+    }
+
+    .container-data {
+        width: 280px;
+        height: 350px;
     }
 }
