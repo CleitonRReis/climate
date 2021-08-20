@@ -20,11 +20,10 @@
 .container-1 {
     width: 350px;
     height: 350px;
-    background: linear-gradient(145deg, #000000, #000000);
-    box-shadow:  0px 20px 20px #000000;
+    background-color: rgba(0, 0, 0, .9);
+    box-shadow:  0px 10px 10px #0000;
     border-radius: 10px;
     padding: 20px;
-    border-right: none;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -40,7 +39,7 @@
     width: 800px;
     height: 700px;
     background-color: rgba(0, 0, 0, .5);
-    box-shadow:  0px 20px 20px #000000;
+    box-shadow:  0px 10px 10px #242222;
     border-radius: 10px;
     margin-left: -20px;
     color: #fff;
