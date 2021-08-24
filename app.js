@@ -39,7 +39,7 @@ const isNightInCity = codeIcon => {
 const showWeatherInfo = city => {
     nameOfCity.innerHTML = `${city.name}, ${city.country}`;
     temperatureOfCity.innerHTML = `${Math.round(city.temp)} ˚C`;
-    domIcon.src = `http://openweathermap.org/img/wn/${city.icon}@2x.png`;
+    domIcon.src = `https://openweathermap.org/img/wn/${city.icon}@2x.png`;
     airHumidity.innerHTML = `Umidade: ${city.humidity}%`;
     domClouds.innerHTML = `Nuvens: ${city.clouds}%`;
     domWind.innerHTML = `Vento: ${city.windSpeed} m/s`;
@@ -54,7 +54,7 @@ const showWeatherInfo = city => {
 const TOKEN_API = 'f9410f78bb373f2d1cf7c2a74a3d4b6f';
 
 const API_URL = cityName =>
-`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=pt_br&APPID=${TOKEN_API}`;
+`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=pt_br&APPID=${TOKEN_API}`;
 
 formCity.addEventListener('submit', async event => {
     event.preventDefault();
