@@ -383,9 +383,8 @@ input:focus {
         width: 372px;
         position: absolute;
         flex-direction: row;
-        flex-wrap: rap;
         border-radius: 0;
-        margin-top: 150px;
+        margin-top: 140px;
         background-color: rgba(0, 0, 0, .4);
         border-top: 2px solid white;
         border-bottom: 2px solid white;
@@ -444,7 +443,7 @@ input:focus {
         text-align: center;
         background-color: rgba(0, 0, 0, .4);
         border-radius: 0;
-        margin-top: 280px;
+        margin-top: 270px;
     }
 
     .data .sensation, .temp-minimum, .temp-maximum {
