@@ -444,7 +444,7 @@ input:focus {
         text-align: center;
         background-color: rgba(0, 0, 0, .4);
         border-radius: 0;
-        margin-top: 290px;
+        margin-top: 280px;
     }
 
     .data .sensation, .temp-minimum, .temp-maximum {
