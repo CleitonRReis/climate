@@ -29,11 +29,11 @@ const testCity = event => {
 };
 
 const isNightInCity = codeIcon => {
-    const main = document.querySelector('.main');
-    const imgDay = "url(img/day.jpeg)";
-    const imgNight = "url(img/night.jpeg)";
+    const mainImg = document.querySelector('.main-img');
+    const imgDay = "img/day.jpeg";
+    const imgNight = "img/night.jpeg";
 
-    main.style.backgroundImage = codeIcon.includes('n') ? imgNight : imgDay;
+    mainImg.src = codeIcon.includes('n') ? imgNight : imgDay;
 };
 
 const showWeatherInfo = city => {
@@ -56,21 +56,21 @@ const TOKEN_API = 'f9410f78bb373f2d1cf7c2a74a3d4b6f';
 const API_URL = cityName =>
 `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=pt_br&APPID=${TOKEN_API}`;
 
+
 formCity.addEventListener('submit', async event => {
     event.preventDefault();
-    
     try {
         const inputValue = formCity.city.value;
         const response = await fetch(API_URL(inputValue));
         const city = await response.json();
-        
+
         if (!response.ok) {
             invalidCityFeedback.style.display = 'flex';
             return; 
         };
-        
+
         invalidCityFeedback.style.display = 'none';
-        
+
         const infoDataCity = {
             name: city.name,
             country: city.sys.country,
